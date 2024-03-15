@@ -1,19 +1,11 @@
-package ru.gb.lesson1;
-
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Streams {
 
   public static void main(String[] args) {
-//    Optional<Person> personOpt = Optional.empty();
-//    personOpt.or
-
-
-
 
     List<Department> departments = new ArrayList<>();
     for (int i = 0; i < 10; i++) {
@@ -79,76 +71,8 @@ public class Streams {
 
   }
 
-  public static class Person {
-    private String name;
-    private int age;
-    private double salary;
-    private Department department;
 
-    public Person(String name, int age, double salary, Department department) {
-      this.name = name;
-      this.age = age;
-      this.salary = salary;
-      this.department = department;
-    }
 
-    public String getName() {
-      return name;
-    }
 
-    public int getAge() {
-      return age;
-    }
-
-    public double getSalary() {
-      return salary;
-    }
-
-    public Department getDepartment() {
-      return department;
-    }
-
-    @Override
-    public String toString() {
-      return "Person{" +
-        "name='" + name + '\'' +
-        ", age=" + age +
-        ", salary=" + salary +
-        ", department=" + department +
-        '}';
-    }
-  }
-
-  public static class Department {
-    private String name;
-
-    public Department(String name) {
-      this.name = name;
-    }
-
-    public String getName() {
-      return name;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-      Department that = (Department) o;
-      return Objects.equals(name, that.name);
-    }
-
-    @Override
-    public int hashCode() {
-      return Objects.hash(name);
-    }
-
-    @Override
-    public String toString() {
-      return "Department{" +
-        "name='" + name + '\'' +
-        '}';
-    }
-  }
 
 }

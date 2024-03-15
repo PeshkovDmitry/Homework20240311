@@ -1,10 +1,12 @@
-package ru.gb.lesson1.hw;
 
-import ru.gb.lesson1.Streams;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class Homework {
 
@@ -15,8 +17,10 @@ public class Homework {
   /**
    * Вывести на консоль отсортированные (по алфавиту) имена персонов
    */
-  public void printNamesOrdered(List<Streams.Person> persons) {
-    // ...
+  public static void printNamesOrdered(List<Person> persons) {
+    persons.stream()
+            .sorted(Comparator.comparing(Person::getName))
+            .forEach(System.out::println);
   }
 
   /**
@@ -24,21 +28,31 @@ public class Homework {
    * Вывести на консоль мапипнг department -> personName
    * Map<Department, Person>
    */
-  public Map<Streams.Department, Streams.Person> printDepartmentOldestPerson(List<Streams.Person> persons) {
-    throw new UnsupportedOperationException();
+
+  public static Map<Department, Person> printDepartmentOldestPerson(List<Person> persons) {
+
+    return persons.stream()
+            .collect(Collectors.toMap(Person::getDepartment, Function.identity(), (first, second) -> {
+              if (first.getAge() < second.getAge()) {
+                return second;
+              }
+              return first;
+            }));
   }
 
   /**
    * Найти 10 первых сотрудников, младше 30 лет, у которых зарплата выше 50_000
    */
-  public List<Streams.Person> findFirstPersons(List<Streams.Person> persons) {
+
+  public static List<Person> findFirstPersons(List<Person> persons) {
     throw new UnsupportedOperationException();
   }
 
   /**
    * Найти депаратмент, чья суммарная зарплата всех сотрудников максимальна
    */
-  public Optional<Streams.Department> findTopDepartment(List<Streams.Person> persons) {
+
+  public static Optional<Department> findTopDepartment(List<Person> persons) {
     throw new UnsupportedOperationException();
   }
 
