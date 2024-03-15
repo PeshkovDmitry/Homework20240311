@@ -45,7 +45,11 @@ public class Homework {
    */
 
   public static List<Person> findFirstPersons(List<Person> persons) {
-    throw new UnsupportedOperationException();
+    return persons.stream()
+            .filter(p -> p.getAge() < 30)
+            .filter(p -> p.getSalary() > 50_000)
+            .limit(10)
+            .collect(Collectors.toList());
   }
 
   /**
