@@ -1,10 +1,4 @@
-
-
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.function.BinaryOperator;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -57,7 +51,17 @@ public class Homework {
    */
 
   public static Optional<Department> findTopDepartment(List<Person> persons) {
-    throw new UnsupportedOperationException();
+      return persons.stream()
+               .map(Person::getDepartment)
+               .distinct()
+               .map(d -> new AbstractMap.SimpleEntry<>(
+                       d,
+                       persons.stream()
+                            .filter(p -> p.getDepartment().equals(d))
+                            .mapToDouble(Person::getSalary)
+                            .sum()))
+              .max((e1, e2) -> (int) (e1.getValue() - e2.getValue()))
+              .map(AbstractMap.SimpleEntry::getKey);
   }
 
 }

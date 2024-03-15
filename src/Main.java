@@ -20,21 +20,41 @@ public class Main {
             ));
         }
 
-//        Homework.printNamesOrdered(persons);
+        System.out.println("Реализация метода printNamesOrdered");
+        Homework.printNamesOrdered(persons);
 
-//        Map<Department, Person> mapTask2 = Homework.printDepartmentOldestPerson(persons);
-//        for (Department department:
-//                mapTask2.keySet().stream()
-//                        .sorted(Comparator.comparing(Department::getName))
-//                        .collect(Collectors.toList())) {
-//            System.out.println(mapTask2.get(department));
-//        }
+        System.out.println("Реализация метода printDepartmentOldestPerson");
+        Map<Department, Person> map = Homework.printDepartmentOldestPerson(persons);
+        for (Department department:
+                map.keySet()) {
+            System.out.println(map.get(department));
+        }
 
+        System.out.println("Реализация метода findFirstPersons");
         for (Person person :
                 Homework.findFirstPersons(persons)) {
             System.out.println(person);
         }
 
+        System.out.println("Реализация метода findTopDepartment");
+        System.out.println(Homework.findTopDepartment(persons));
+
+        System.out.println("Проверка метода findTopDepartment");
+        // Для проверки последней задачи
+        Map<Department, Double> result = new HashMap<>();
+        for (Person person:
+                persons) {
+            Double previous = 0.0;
+            if (result.containsKey(person.getDepartment())) {
+                previous = result.get(person.getDepartment());
+            }
+            previous += person.getSalary();
+            result.put(person.getDepartment(), previous);
+        }
+        for (Department department :
+                result.keySet()) {
+            System.out.println(department.getName() + " " + result.get(department));
+        }
 
     }
 }
